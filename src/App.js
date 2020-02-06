@@ -11,20 +11,29 @@ class App extends Component {
     constructor(props) {
         super(props);
         const LoginView = () => (
-            <Login/>
+            <Login handleSignIn={this.handleSignIn}/>
         );
       
         const TodoAppView = () => (
             <TodoApp/>
         );
         this.state = {loginView: LoginView,todoAppView: TodoAppView,isLoggedIn:false}
+        this.handleSignIn=this.handleSignIn.bind(this);
+        localStorage.setItem('email', "juan@mail.com");
+        localStorage.setItem('password', "123");
+        if (!localStorage.getItem("isLoggedIn")){
+            localStorage.setItem("isLoggedIn",this.state.isLoggedIn);
+        }
     }
 
+    handleSignIn(){
+        this.setState({isLoggedIn:true})
+    }
 
     render() {
         const LoginView = this.state.loginView;
         const TodoAppView = this.state.todoAppView;
-        const isLoggedIn = this.state.isLoggedIn;
+        const isLoggedIn = this.state.isLoggedIn || (localStorage.getItem("isLoggedIn") == "true" );
         let choose;
         if (!isLoggedIn){
             choose = (

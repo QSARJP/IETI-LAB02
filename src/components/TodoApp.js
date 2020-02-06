@@ -21,7 +21,7 @@ export class TodoApp extends Component{
 
     render(){
         return (
-            <div className="App">
+            <div className="App" onSubmit={this.handleSubmit}>
 
                 <br/>
                 <br/>
@@ -44,7 +44,7 @@ export class TodoApp extends Component{
                     </DatePicker>
                     <br/>
                     <br/>
-                    <Button variant="contained" color="secondary" onClick={this.handleSubmit} > Add #{this.state.items.length + 1} </Button>
+                    <Button variant="contained" color="secondary" type="submit" > Add #{this.state.items.length + 1} </Button>
                 </form>
                 <br/>
                 <br/>
